@@ -1,0 +1,20 @@
+Globale Vicon (V):
+ - origine coincidente con il centro dell'apriltag XL #0, a coordinate (0.256m, 0.256m, 0m)  rispetto all'SDR mappa (M) (salvo degli offset dovuti ai settaggi interni del wand)
+ - orientazione:
+ 	- z_V verso l'alto
+ 	- x_V // y_M 
+ 	- y_V // x_M
+
+hr01 (H):
+ - origine posta sul marker 1 (posto sopra la camera)
+ - orientazione:
+ 	- z_H verso l'alto
+ 	- y_H // all'asse di simmetria longitudinale (x_FRD), con verso che punta il centro drone
+ 	- x_H di conseguenza
+
+CAMBIO DI COORDINATE DA MAPPA A VICON:
+
+V_P_M = [-0.256, -0.256, 0]
+V_R_M = [0  1  0
+	 1  0  0
+	 0  0 -1]

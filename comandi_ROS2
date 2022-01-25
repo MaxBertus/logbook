@@ -1,0 +1,2 @@
+REGISTRAZIONE TRAMITE ROSBAG:
+ros2 bag record <nome topics>
