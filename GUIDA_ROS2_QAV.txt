@@ -1,0 +1,36 @@
+SUL DRONE
+
+	AVVIARE MAVLINK BRIDGE UDP
+	/usr/local/bin/mavproxy.py --master=/dev/ttyACM0,57600 --out=udpin:0.0.0.0:14550 --daemon
+	
+
+	AVVIARE NODO CAMERA RASPI
+	ros2 run raspicam2 raspicam2_node --ros-args --params-file `ros2 pkg prefix raspicam2`/share/raspicam2/cfg/params.yaml
+	
+	ros2 run v4l2_camera v4l2_camera_node --ros-args -p image_size:=[320,240]
+
+	(PER VISUALIZZARE LA CAMERA:)
+	run rqt_image_view rqt_image_view
+	
+	
+	AVVIARE NODO APRILTAG
+	ros2 launch apriltag_ros tag_41h12_all.launch.py
+	
+	PER ATTIVARE IL MICORO_RTPS_AGENT:
+	micrortps_agent -b 921600 -d /dev/ttyAMA1
+	
+	PER LANCIARE APRILTAG_TO_VISUAL_ODOMETRY:
+	ros2 launch apriltag_to_visual_odometry apriltag_to_visual_odometry.launch.py
+
+	---
+	
+	CAMBIARE INDIRIZZI DI RETE LAN
+	cd /etc/netplan
+	sudo nano 50-cloud-init.yaml
+		
+SULLA TORRE DI CONTROLLO
+
+	Su QGroundControl cliccare sul simbolo della "Q"-> Application Settings -> Comm Links -> Add. Aggiungere una connessione udp su porta 14550 con indirizzo ip del drone.
+	
+	ros2 launch apriltag_to_visual_odometry apriltag_to_visual_odometry.launch.py
+	
