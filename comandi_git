@@ -14,5 +14,5 @@ Quando viene richiesto il protocollo preferito per le operazioni Git, selezionar
 COMANDI UTILI:
 git status
 git add -A
-git commit -m <messaggio>
+git commit -m "<messaggio>"
 git push
