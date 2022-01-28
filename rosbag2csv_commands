@@ -1,0 +1,15 @@
+REGISTRATION THROUGH ROSBAG:
+ros2 bag record <topics name>
+
+ROSBAG TO CSV CONVERSION:
+
+PLAY ROSBAGS:
+cd <path-to-the-rosbag-directories>
+ros2 bag play <rosbag directory name> --start-paused
+
+IN OTHER TERMINALS LAUNCH ROS2 TOPIC ECHO RECORDING DATA IN A CSV FILE (ONE TERMINAL FOR EACH TOPIC AS ONE CSV FILE FOR EACH TOPIC):
+ros2 topic echo <topic name> > <csv file name>.csv
+
+RESUME PLAYING IN THE FIRST TERMINAL
+
+

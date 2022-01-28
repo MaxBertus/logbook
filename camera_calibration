@@ -1,30 +1,30 @@
-INSTALLAZIONE:
+INSTALLATION:
 sudo apt install ros-foxy-camera-calibration-parsers
 sudo apt install ros-foxy-camera-info-manager
 sudo apt install ros-foxy-launch-testing-ament-cmake
 sudo apt install ros-foxy-image_pipeline
 
 ---
-PROCEDURA:
-1. LANCIARE IL NODO CAMERA ABILITANDO IMMAGINI RAW E LANCIARE NODO DI CALIBRAZIONE
+PROCEDURE:
+1. LAUNCH CAMERA NODE ENABLING RAW IMAGES AND THEN LAUNCH CALIBRATION NODE:
 
-CON NODO RASPICAM2:
+WITH RASPICAM2 NODE:
 ros2 run camera_calibration cameracalibrator --size=7x10 --square=0.05 --pattern='chessboard' image:=/camera/image camera:=/camera
 
-CON NODO vl42_camera_node:
+WITH vl42_camera_node:
 	ros2 run camera_calibration cameracalibrator --size=7x10 --square=0.05 --pattern='chessboard' image:=/image_raw camera:=/
 
-2. CALIBRARE + COPIARE FILE ost.yaml ALL'INTERNO DEL PERCORSO $HOME/.ros/camera_info/
+2. CALIBRATE + COPY THE FILE ost.yaml INSIDE THE PATH $HOME/.ros/camera_info/
 
 ---
 
 TROUBLESHOOTING:
-PER VERIFICARE L'ESISTENZA DELL'ESEGUIBILE:
+IN ORDER TO VERIFY THE EXISTENCE OF THE EXECUTABLE:
 	ros2 pkg executables camera_calibration
 
 ---
 
-CALIBRAZIONI:
+PREVIOUS CALIBRATION:
 RAPISCAM2 (?):
 
 image_width: 640

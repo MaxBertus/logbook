@@ -1,0 +1,102 @@
+Raspberry DEVLAB06:
+	username: devlab06
+	password: devlab
+	IP: 192.168.116.56
+
+---
+
+PRELIMINARY KNOWLEDGES: 
+
+- LAUNCH THIS COMMAND EVERYTIME A NEW TERMINAL IS OPENED IN ORDER TO ACCESS ROS2:
+	source /opt/ros/foxy/setup.bash
+
+	- ALTERNATIVELY ADD THE COMMAND TO .BASHRC FILE:
+		echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
+
+- LAUNCH THIS COMMAND EVERYTIME A NEW TERMINAL IS OPENED IN ORDER TO ACCESS OWN ROS2 WORKSPACE: ('px4_ros_com_ros2'):
+	source ~/px4_ros_com_ros2/install/local_setup.bash
+
+	- ALTERNATIVELY ADD THE COMMAND TO .BASHRC FILE:
+		echo "source ~/px4_ros_com_ros2/install/local_setup.bash" >> ~/.bashrc
+
+- IN ORDER TO COMPILE THE ENTIRE ROS2 WORKSPACE ( LAUNCH THE COMMAND INSIDE 'px4_ros_com_ros2' FOLDER)
+	colcon build
+	
+	- IN ORDER TO COMPILE A SPECIFIC PACKAGE OF ROS2 WORKSPACE ( LAUNCH THE COMMAND INSIDE 'px4_ros_com_ros2' FOLDER)
+	colcon build --packages-select <package_name>
+
+- IN ORDER TO REMOVE ALL BUILDED FILES
+	rm -rf build install log
+
+---
+
+APRILTAG_TO_VISUAL_ODOMETRY REPOSITORY:
+https://github.com/martino-segattini/apriltag_to_visual_odometry.git
+
+(LAUNCH THE NODES IN WRITING ORDER)
+
+	- LAUNCH MAVROS NODE:
+		ros2 run mavros mavros_node --ros-args --params-file ~/px4_ros_com_ros2/mavros_param.yaml
+
+	- LAUNCH CAMERA NODE:
+		ros2 launch realsense2_camera rs_launch.py config_file:="'$COLCON_PREFIX_PATH/realsense2_camera/share/realsense2_camera/config/d435_color.yaml'"
+		(alternativamente usare questo:  ros2 launch realsense2_camera rs_color_launch.py )
+
+	- LAUNCH APRILTAG NODE:
+		ros2 launch apriltag_ros tag_41h12_all.launch.py
+
+	- ACTIVATE MICORO_RTPS_AGENT:
+		micrortps_agent -b 921600 -d /dev/ttyAMA2
+
+	- LAUNCH APRILTAG_TO_VISUAL_ODOMETRY NODE:
+		ros2 launch apriltag_to_visual_odometry apriltag_to_visual_odometry.launch.py
+
+---
+
+OTHER COMMANDS:
+
+DRONE_URDF REPOSITORY:
+https://github.com/martino-segattini/drone_urdf.git
+
+	- LAUNCH drone_urdf:
+		ros2 launch drone_urdf view_drone.launch.py
+
+	- LAUNCH BOTH CAMERA AND APRILTAG NODES:
+		ros2 launch apriltag_to_visual_odometry hr01_project.launch.py
+	
+	- IN ORDER TO VISUALIZE CAMERA IMAGES ON ROS2:
+	ros2 launch realsense2_description view_model.launch.py model:=test_d435_camera.urdf.xacro
+
+	- IN ORDER TO CHANGE CAMERA NODE CONFIGURATIONS :
+		cd ~/px4_ros_com_ros2/src/realsense-ros/realsense2_camera/config
+		(HERE THERE ARE .yaml FILES CONTAINING PARAMETERS)
+
+---
+CURRENTLY PRESENT NODES:
+
+/apriltag/apriltag
+/apriltag/tagcontainer
+/camera/camera
+/mavros
+/apriltag_to_visual_odometry
+
+---
+
+CURRENTLY PRESENT TOPICS:
+
+/apriltag/detections
+/tf
+/tf_static
+/camera/color/camerainfo
+/camera/color/imageraw
+/camera/color/metadata
+/camera/depth/camerainfo
+/camera/depth/imageraw
+/camera/depth/metadata
+
+/mavros/...
+/fmu/...
+
+
+---
+

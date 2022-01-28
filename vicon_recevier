@@ -1,0 +1,29 @@
+INSTALLATION:
+
+INSIDE THE OWN WORKSPACE SRC FOLDER, CLONE THE REPOSITORY ROS2_VICON_RECEIVER:
+git clone https://github.com/OPT4SMART/ros2-vicon-receiver
+
+INSTALL DATASTREAM SDK AND OTHER LIBRARIES, SO LAUNCH:
+./install_libs.sh
+
+BUILDING PACKAGE:
+cd vicon_receiver
+colcon build --symlink-install
+
+THERE MUST BE PRESENT ALSO PX4_MSGS DIRECTORY INSIDE WORKSPACE SRC:
+git clone https://github.com/PX4/px4_msgs.git ~/px4_ros_com_ros2/src/px4_msgs
+
+AND PX4_ROS_COM:
+git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com:
+
+IN ORDER TO BUILD THEM, USE:
+cd ~/px4_ros_com_ros2/src/px4_ros_com/scripts
+source build_ros2_workspace.bash
+
+---
+
+IN ORDER TO RUN THE PROGRAM:
+source vicon_receiver/install/setup.bash
+ros2 launch vicon_receiver client.launch.py
+
+REMEMBER TO SET IP ADDRESS OF THE MACHINE RUNNING VICON APP MODYFING 'hostname' INSIDE 'client.launch.py' FILE INSIDE LAUNCH FOLDER

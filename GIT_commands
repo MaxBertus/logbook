@@ -1,0 +1,18 @@
+CACHING GITHUB CREDENTIALS IN GIT (IN ORDER TO AVOID THE USE OF PERSONAL ACCESS TOKEN):
+- INSTALLATION Github CLI:
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+sudo apt-add-repository https://cli.github.com/packages
+sudo apt update
+sudo apt install gh
+
+- AUTHENTICATION:
+In the command line, enter gh auth login, then follow the prompts. 
+When prompted for your preferred protocol for Git operations, select HTTPS.
+ 
+---
+
+USEFUL COMMANDS:
+git status
+git add -A
+git commit -m "<messaggio>"
+git push
