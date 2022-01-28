@@ -21,9 +21,17 @@ cd ~/px4_ros_com_ros2/src/px4_ros_com/scripts
 source build_ros2_workspace.bash
 
 ---
+NODE LAUNCH:
 
 IN ORDER TO RUN THE PROGRAM:
 source vicon_receiver/install/setup.bash
 ros2 launch vicon_receiver client.launch.py
 
 REMEMBER TO SET IP ADDRESS OF THE MACHINE RUNNING VICON APP MODYFING 'hostname' INSIDE 'client.launch.py' FILE INSIDE LAUNCH FOLDER
+
+---
+TROUBLESHOOTING:
+
+- THERE IS A TYPO IN THE 'CMakeList.txt' FILE INSIDE 'vicon_receiver' DIRECTORY , AT LINE #38 ---> THE CORRECT LINE IS
+ament_target_dependencies(vicon_client "rclcpp" "rcutils")
+
