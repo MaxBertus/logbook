@@ -32,6 +32,6 @@ REMEMBER TO SET IP ADDRESS OF THE MACHINE RUNNING VICON APP MODYFING 'hostname' 
 ---
 TROUBLESHOOTING:
 
-- THERE IS A TYPO IN THE 'CMakeList.txt' FILE INSIDE 'vicon_receiver' DIRECTORY , AT LINE #38 ---> THE CORRECT LINE IS
+- THERE IS A TYPO IN THE 'CMakeList.txt' FILE INSIDE 'vicon_receiver' DIRECTORY, AT LINE #38 ---> THE CORRECT LINE IS
 ament_target_dependencies(vicon_client "rclcpp" "rcutils")
 
