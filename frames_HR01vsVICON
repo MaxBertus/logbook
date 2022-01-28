@@ -15,7 +15,7 @@ HR01 (H):
 ---
 
 COORDINATES CHANGE BETWEEN MAP AND VICON:
-V_P_M = [0.256, 0.256, 0]
+V_P_M = [-0.256, -0.256, 0]
 V_R_M = [0  1  0
 	 1  0  0
 	 0  0 -1]
