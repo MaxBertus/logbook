@@ -10,9 +10,7 @@ HR01 (H):
  - ORIENTATION same as drone one (FRD notation)
  
  Notable coordinates with respect to H:
- - of PX4 base centre 	-> (-0.042, 0, -0.079) metres
- - of PX4 centre 	-> (-0.047, 0, -0.079) metres;
- - of center of mass 	-> (-0.115, 0.002, 0.026) metres; 
+ - of center of mass (apriltag) -> (-0.09255, 0.0025 -0.04305) metres;
 
 ---
 
