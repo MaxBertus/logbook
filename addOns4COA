@@ -1,0 +1,23 @@
+FOR MAMBO CONTROL:
+- Simulink Support Package for Parrot Minidrones
+
+FOR VISION:
+- Image Processing Toolbox
+
+FOR SIMULATION:
+- Aerospace Blockset
+- Aerospace Toolbox
+- Signal Processing Toolbox
+- Control System Toolbox
+- Simulink 3-D Animation
+
+TO ENABLE MAT-FILES LOGGING:
+- MATLAB Coder
+- Simulink Coder
+
+TO FOLLOW ORBIT/WAYPOINTS:
+- UAV Toolbox
+
+OTHERS:
+- Computer Vision Toolbox
+- Instrument Control Toolbox
