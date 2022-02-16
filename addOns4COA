@@ -15,6 +15,10 @@ TO ENABLE MAT-FILES LOGGING:
 - MATLAB Coder
 - Simulink Coder
 
+  IN ORDER TO ENABLE LOGGING:
+  - Go to: "Modeling" ---> "Model Settings" ---> "Hardware Implementation" ---> "Advanced Parameters" ---> tick "Use Simulink Coder Features" ---> click on "Apply" and then on "OK" 
+  - Go to: "Modeling" ---> "Model Settings" ---> "Code Generation" ---> "Interface" ---> "Advanced Parameters" ---> tick "MAT-file logging" ---> click on "Apply" and then on "OK" 
+
 TO FOLLOW ORBIT/WAYPOINTS:
 - UAV Toolbox
 
