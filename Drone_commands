@@ -1,8 +1,13 @@
-Raspberry DEVLAB06:
+HR01:
 	username: devlab06
 	password: devlab
-	IP: 192.168.116.56
-
+	IP: 192.168.116.6
+	
+QR01:
+	username: devlab11
+	password: devlab
+	IP: 192.168.116.11
+	
 ---
 
 PRELIMINARY KNOWLEDGES: 
@@ -30,33 +35,33 @@ PRELIMINARY KNOWLEDGES:
 
 ---
 
-APRILTAG_TO_VISUAL_ODOMETRY REPOSITORY:
-https://github.com/martino-segattini/apriltag_to_visual_odometry.git
+DRONE SETUP - LAUNCH THE NODES IN WRITING ORDER:
 
-(LAUNCH THE NODES IN WRITING ORDER)
-
-	- LAUNCH MAVROS NODE:
+	- MAVROS NODE:
 		ros2 run mavros mavros_node --ros-args --params-file ~/px4_ros_com_ros2/mavros_param.yaml
+		
+		(REMEMBER TO SET INSIDE .yaml FILE THE IP ADDRESS OF COMPUTER USED AS GROUND STATION)
 
-	- LAUNCH CAMERA NODE:
-		ros2 launch realsense2_camera rs_launch.py config_file:="'$COLCON_PREFIX_PATH/realsense2_camera/share/realsense2_camera/config/d435_color.yaml'"
-		(alternativamente usare questo:  ros2 launch realsense2_camera rs_color_launch.py )
+	- CAMERA NODE:
+		HR01:
+			ros2 launch realsense2_camera rs_launch.py config_file:="'$COLCON_PREFIX_PATH/realsense2_camera/share/realsense2_camera/config/d435_color.yaml'"
 
-	- LAUNCH APRILTAG NODE:
+		QR01:
+			ros2 run v4l2_camera v4l2_camera_node --ros-args -p image_size:=[320,240]
+
+	- APRILTAG NODE:
 		ros2 launch apriltag_ros tag_41h12_all.launch.py
 
-	- ACTIVATE MICORO_RTPS_AGENT:
+
+	- MICORO_RTPS_AGENT:
 		micrortps_agent -b 921600 -d /dev/ttyAMA2
 
-	- LAUNCH APRILTAG_TO_VISUAL_ODOMETRY NODE:
+	- APRILTAG_TO_VISUAL_ODOMETRY NODE:
 		ros2 launch apriltag_to_visual_odometry apriltag_to_visual_odometry.launch.py
 
 ---
 
 OTHER COMMANDS:
-
-DRONE_URDF REPOSITORY:
-https://github.com/martino-segattini/drone_urdf.git
 
 	- LAUNCH drone_urdf:
 		ros2 launch drone_urdf view_drone.launch.py
@@ -64,39 +69,23 @@ https://github.com/martino-segattini/drone_urdf.git
 	- LAUNCH BOTH CAMERA AND APRILTAG NODES:
 		ros2 launch apriltag_to_visual_odometry hr01_project.launch.py
 	
-	- IN ORDER TO VISUALIZE CAMERA IMAGES ON ROS2:
-	ros2 launch realsense2_description view_model.launch.py model:=test_d435_camera.urdf.xacro
+	- TO VISUALIZE CAMERA IMAGES ON ROS2:
+		HR01:
+			ros2 launch realsense2_description view_model.launch.py model:=test_d435_camera.urdf.xacro
+			
+		QR01:
+			ros2 run rqt_image_view rqt_image_view
+			
 
-	- IN ORDER TO CHANGE CAMERA NODE CONFIGURATIONS :
+	- TO CHANGE CAMERA NODE CONFIGURATIONS :
 		cd ~/px4_ros_com_ros2/src/realsense-ros/realsense2_camera/config
 		(HERE THERE ARE .yaml FILES CONTAINING PARAMETERS)
-
----
-CURRENTLY PRESENT NODES:
-
-/apriltag/apriltag
-/apriltag/tagcontainer
-/camera/camera
-/mavros
-/apriltag_to_visual_odometry
-
----
-
-CURRENTLY PRESENT TOPICS:
-
-/apriltag/detections
-/tf
-/tf_static
-/camera/color/camerainfo
-/camera/color/imageraw
-/camera/color/metadata
-/camera/depth/camerainfo
-/camera/depth/imageraw
-/camera/depth/metadata
-
-/mavros/...
-/fmu/...
+		
+	- TO CHANGE NETWORK ADDRESS:
+		cd /etc/netplan
+		sudo nano 50-cloud-init.yaml
+		
+		(SET CORRECT ACCESS POINT, ADDRESS AND GATEWAY)
 
 
----
 

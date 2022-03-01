@@ -1,6 +1,13 @@
 REGISTRATION THROUGH ROSBAG:
 ros2 bag record <topics name>
 
+---
+
+IN ORDER TO VISUALIZE DATA:
+rqt_graph
+
+---
+
 ROSBAG TO CSV CONVERSION:
 
 PLAY ROSBAGS:
@@ -12,4 +19,4 @@ ros2 topic echo <topic name> > <csv file name>.csv
 
 RESUME PLAYING IN THE FIRST TERMINAL
 
-
+---
