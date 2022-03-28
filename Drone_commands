@@ -58,6 +58,9 @@ DRONE SETUP - LAUNCH THE NODES IN WRITING ORDER:
 
 	- APRILTAG_TO_VISUAL_ODOMETRY NODE:
 		ros2 launch apriltag_to_visual_odometry apriltag_to_visual_odometry.launch.py
+		
+	- OFFBOARD CONTROL:
+		ros2 run px4_ros_com offboard_control_custom
 
 ---
 
